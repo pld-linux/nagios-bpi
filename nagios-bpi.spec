@@ -18,6 +18,7 @@ Source0:	http://assets.nagios.com/downloads/exchange/nagiosbpi/nagiosbpi.zip
 # Source0-md5:	a0b6d7ce21ee8903278a4d2f2f89f285
 Patch0:		patchs.patch
 URL:		http://exchange.nagios.org/directory/Addons/Components/Nagios-Business-Process-Intelligence/details
+BuildRequires:	unzip
 Requires:	nagios-cgi
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
