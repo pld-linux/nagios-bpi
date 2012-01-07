@@ -1,0 +1,23 @@
+--- nagiosbpi/constants.conf~	2010-11-30 15:19:28.000000000 +0200
++++ nagiosbpi/constants.conf	2010-12-07 21:42:22.258295460 +0200
+@@ -8,15 +8,15 @@
+ 
+ 
+ ###Nagios File Locations ->USE ABSOLUTE DIRECTORIES FOR ALL FILE LOCATIONS 
+-STATUSFILE=/usr/local/nagios/var/status.dat
+-OBJECTSFILE=/usr/local/nagios/var/objects.cache
++STATUSFILE=/var/lib/nagios/status.dat
++OBJECTSFILE=/var/lib/nagios/objects.cache
+ 
+ 
+ #####requires write permissions for directory and files.  USE ABSOLUTE DIRECTORIES FOR ALL FILE LOCATIONS 
+ ## if writing to files failes, run the set_bpi_perms.sh script  
+-CONFIGFILE=/usr/local/nagiosxi/html/includes/components/nagiosbpi/bpi.conf 
+-CONFIGBACKUP=/usr/local/nagiosxi/html/includes/components/nagiosbpi/tmp/bpi.conf.backup
++CONFIGFILE=/etc/webapps/nagiosbpi/bpi.conf
++CONFIGBACKUP=/etc/webapps/nagiosbpi/bpi.conf.bak
+ 
+ ##optional xml output of BPI group data.  USE ABSOLUTE DIRECTORIES FOR ALL FILE LOCATIONS 
+ #Uncomment this to write xml output each time group status is calculated  
+-XMLOUTPUT=/usr/local/nagiosxi/html/includes/components/nagiosbpi/tmp/bpi.xml
++XMLOUTPUT=/tmp/bpi.xml
