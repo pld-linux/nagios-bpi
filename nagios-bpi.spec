@@ -8,16 +8,17 @@
 # - it doesn't even check for errors for simple file operation:
 #     file_put_contents(CONFIGFILE, $new);
 #     print "<p>File successfully written!</p>";
+# - system jquery
 Summary:	Nagios Business Process Intelligence Featured Popular
 Name:		nagios-bpi
-Version:	1.0
-Release:	0.7
+Version:	1.3.1
+Release:	0.1
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://assets.nagios.com/downloads/exchange/nagiosbpi/nagiosbpi.zip
-# Source0-md5:	a0b6d7ce21ee8903278a4d2f2f89f285
+# Source0-md5:	571771978a3bc00604abdee4bbe1c8c4
 Patch0:		paths.patch
-URL:		http://exchange.nagios.org/directory/Addons/Components/Nagios-Business-Process-Intelligence/details
+URL:		http://exchange.nagios.org/directory/Addons/Components/Nagios-Business-Process-Intelligence-(BPI)/details
 BuildRequires:	unzip
 Requires:	nagios-cgi
 BuildArch:	noarch
@@ -39,25 +40,21 @@ conjunction with a check plugin to allow for notifications through
 Nagios.
 
 %prep
-%setup -q -n nagiosbpi
+# use versioned build dir
+%setup -qc
+mv nagiosbpi/* .
 %patch0 -p1
-
-echo '<?php
-die();
-// this file shouldnt even exist, it has no authorization and it writes config file!
-require "config_functions/fix_config.php";
-' > fix_config.php
 
 rmdir tmp
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{appdir}}
-cp -a *.php *.js *.css constants.conf $RPM_BUILD_ROOT%{appdir}
+cp -p *.php *.js *.css constants.conf $RPM_BUILD_ROOT%{appdir}
 cp -a config_functions functions images $RPM_BUILD_ROOT%{appdir}
 
 # relocate
-cp -a bpi.conf $RPM_BUILD_ROOT%{_sysconfdir}
+cp -p bpi.conf $RPM_BUILD_ROOT%{_sysconfdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
